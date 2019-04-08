@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import ListItem from './ListItem'
 
 class List extends Component {
   render() {
-    return (
-      <div>
-        <h1>List of things to do</h1>
-      </div>
-    );
+    return this.props.list.map((listItem) => (
+      <ListItem listItem={listItem}/>
+    ))
   }
 }
 

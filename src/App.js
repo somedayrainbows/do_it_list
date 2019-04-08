@@ -26,7 +26,7 @@ class App extends Component {
     console.log(this.state.list)
     return (
       <div>
-        <List />
+        <List list={this.state.list} />
       </div>
     );
   }
