@@ -4,8 +4,12 @@ import PropTypes from 'prop-types'
 class ListItem extends Component {
   render() {
     let item = this.props.listItem
+    const itemStyle = {
+      backgroundColor: '#ef5323'
+    }
+
     return (
-      <div>
+      <div style={itemStyle}>
       <p key={item.id}>{item.title}</p>
       </div>
     )
