@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import ListItem from './ListItem'
 import PropTypes from 'prop-types'
 
-class List extends Component {
+export class List extends Component {
   render() {
     return this.props.list.map((listItem) => (
-      <ListItem key={listItem.id} listItem={listItem} toggleComplete={this.props.toggleComplete}/>
+      <ListItem key={listItem.id} listItem={listItem} toggleComplete={this.props.toggleComplete}
+      deleteItem={this.props.deleteItem}
+      />
     ))
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import List from './components/List'
+import Header from './components/Header'
+import AddItem from './components/AddItem'
 import './App.css';
 
 class App extends Component {
@@ -24,8 +26,6 @@ class App extends Component {
   }
 
   toggleComplete = (id) => {
-    // this.props.listItem.completed = true
-    console.log(id)
     this.setState({ list: this.state.list.map(listItem => {
       if(listItem.id === id) {
         listItem.completed = !listItem.completed
@@ -34,11 +34,22 @@ class App extends Component {
     }) })
   }
 
+  deleteItem = (id) => {
+    this.setState({ list: [...this.state.list.filter(listItem => listItem.id !== id)]
+    })
+  }
+
   render() {
     console.log(this.state.list)
     return (
-      <div>
-        <List list={this.state.list} toggleComplete={this.toggleComplete}/>
+      <div className="App">
+        <div clasName="container">
+          <Header />
+          <AddItem />
+          <List list={this.state.list} toggleComplete={this.toggleComplete}
+            deleteItem={this.deleteItem}
+            />
+        </div>
       </div>
     );
   }

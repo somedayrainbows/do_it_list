@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-class ListItem extends Component {
+export class ListItem extends Component {
   applyStyle = () => {
     return {
       textDecoration: this.props.listItem.completed ? 'line-through' : 'none',
@@ -20,6 +20,7 @@ class ListItem extends Component {
         <p>
           <input type="checkbox" onChange={this.props.toggleComplete.bind(this, id)}/> {' '}
           {title}
+          <button style={buttonStyle} onClick={this.props.deleteItem.bind(this, id)}>X</button>
         </p>
       </div>
     )
@@ -28,6 +29,16 @@ class ListItem extends Component {
 
 ListItem.propTypes = {
   listItem: PropTypes.object.isRequired
+}
+
+const buttonStyle = {
+  background: '#ef5323',
+  color: '#fff',
+  border: 'none',
+  padding: '5px 8px',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  float: 'right'
 }
 
 export default ListItem
