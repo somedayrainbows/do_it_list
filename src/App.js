@@ -23,16 +23,22 @@ class App extends Component {
     ]
   }
 
-  markComplete = (id) => {
+  toggleComplete = (id) => {
     // this.props.listItem.completed = true
     console.log(id)
+    this.setState({ list: this.state.list.map(listItem => {
+      if(listItem.id === id) {
+        listItem.completed = !listItem.completed
+      }
+      return listItem
+    }) })
   }
 
   render() {
     console.log(this.state.list)
     return (
       <div>
-        <List list={this.state.list} markComplete={this.markComplete}/>
+        <List list={this.state.list} toggleComplete={this.toggleComplete}/>
       </div>
     );
   }
