@@ -22,11 +22,17 @@ class App extends Component {
       },
     ]
   }
+
+  markComplete = (id) => {
+    // this.props.listItem.completed = true
+    console.log(id)
+  }
+
   render() {
     console.log(this.state.list)
     return (
       <div>
-        <List list={this.state.list} />
+        <List list={this.state.list} markComplete={this.markComplete}/>
       </div>
     );
   }

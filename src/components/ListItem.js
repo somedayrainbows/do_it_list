@@ -5,16 +5,22 @@ class ListItem extends Component {
   applyStyle = () => {
     return {
       textDecoration: this.props.listItem.completed ? 'line-through' : 'none',
-      background: '#388b8d'
+      background: '#388b8d',
+      borderBottom: '1px #fff dotted',
+      padding: '10px',
+      color: '#fff'
     }
   }
 
   render() {
-    let item = this.props.listItem
+    const { id, title } = this.props.listItem
 
     return (
       <div style={this.applyStyle()}>
-        <p>{item.title}</p>
+        <p>
+          <input type="checkbox" onChange={this.props.markComplete.bind(this, id)}/> {' '}
+          {title}
+        </p>
       </div>
     )
   }
