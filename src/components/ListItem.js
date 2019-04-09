@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 class ListItem extends Component {
+  applyStyle = () => {
+    return {
+      textDecoration: this.props.listItem.completed ? 'line-through' : 'none',
+      background: '#388b8d'
+    }
+  }
+
   render() {
     let item = this.props.listItem
-    const itemStyle = {
-      backgroundColor: '#ef5323'
-    }
 
     return (
-      <div style={itemStyle}>
-      <p key={item.id}>{item.title}</p>
+      <div style={this.applyStyle()}>
+        <p>{item.title}</p>
       </div>
     )
   }
