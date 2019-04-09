@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import List from './components/List'
 import Header from './components/Header'
 import AddItem from './components/AddItem'
+import uuid from 'uuid'
 import './App.css';
 
 class App extends Component {
   state = {
     list: [
       {
-        id: 1,
+        id: uuid.v4(),
         title: 'Buy groceries',
         completed: false
       },
       {
-        id: 2,
+        id: uuid.v4(),
         title: 'Meal prep',
         completed: false
       },
       {
-        id: 3,
+        id: uuid.v4(),
         title: 'Exercise',
         completed: false
       },
@@ -39,13 +40,23 @@ class App extends Component {
     })
   }
 
+  addItem = (title) => {
+    const newItem = {
+      id: uuid.v4(),
+      title,
+      completed: false
+    }
+    this.setState({ list: [...this.state.list, newItem]
+    })
+  }
+
   render() {
     console.log(this.state.list)
     return (
       <div className="App">
-        <div clasName="container">
+        <div className="container">
           <Header />
-          <AddItem />
+          <AddItem addItem={this.addItem} />
           <List list={this.state.list} toggleComplete={this.toggleComplete}
             deleteItem={this.deleteItem}
             />
