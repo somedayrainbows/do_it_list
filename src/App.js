@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import List from './components/List'
 import Header from './components/Header'
 import AddItem from './components/AddItem'
+import About from './components/pages/About'
+
 import uuid from 'uuid'
 import './App.css';
 
@@ -51,17 +54,23 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.list)
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddItem addItem={this.addItem} />
-          <List list={this.state.list} toggleComplete={this.toggleComplete}
-            deleteItem={this.deleteItem}
-            />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <AddItem addItem={this.addItem} />
+                <List list={this.state.list} toggleComplete={this.toggleComplete}
+                deleteItem={this.deleteItem}
+                />
+              </React.Fragment>
+            )} />
+            <Route path="/about" component={About} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
