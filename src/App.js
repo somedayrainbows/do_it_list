@@ -4,29 +4,19 @@ import List from './components/List'
 import Header from './components/Header'
 import AddItem from './components/AddItem'
 import About from './components/pages/About'
-
-import uuid from 'uuid'
+import axios from 'axios'
+// import uuid from 'uuid'
 import './App.css';
 
 class App extends Component {
   state = {
-    list: [
-      {
-        id: uuid.v4(),
-        title: 'Buy groceries',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Meal prep',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Exercise',
-        completed: false
-      },
-    ]
+    list: []
+  }
+
+  componentDidMount() {
+    //pulls in the existing items from the api
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(res => this.setState({ list: res.data}))
   }
 
   toggleComplete = (id) => {
@@ -39,18 +29,18 @@ class App extends Component {
   }
 
   deleteItem = (id) => {
-    this.setState({ list: [...this.state.list.filter(listItem => listItem.id !== id)]
-    })
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res => this.setState({ list: [...this.state.list.filter(listItem => listItem.id !== id)]
+      })
+    )
   }
 
   addItem = (title) => {
-    const newItem = {
-      id: uuid.v4(),
-      title,
-      completed: false
-    }
-    this.setState({ list: [...this.state.list, newItem]
-    })
+    // mimics the post/request to/from an API but doesn't really save to the test server
+    axios.post('https://jsonplaceholder.typicode.com/todos', { title, complete: false }) //returns a promise
+      .then(res =>
+        this.setState({ list: [...this.state.list, res.data]})
+      )
   }
 
   render() {

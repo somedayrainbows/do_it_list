@@ -28,7 +28,9 @@ export class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-  listItem: PropTypes.object.isRequired
+  listItem: PropTypes.object.isRequired,
+  toggleComplete: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
 }
 
 const buttonStyle = {

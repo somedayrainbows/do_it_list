@@ -13,7 +13,9 @@ export class List extends Component {
 }
 
 List.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  toggleComplete: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
 }
 
 export default List;
